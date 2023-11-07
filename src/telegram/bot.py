@@ -20,8 +20,8 @@ Ready to get started? Feel free to explore and protect your surroundings! 👍
 """
 
 # Create inline buttons
-repo_button = InlineKeyboardButton("👉 Repository", url="https://github.com/your-repo")
-developer_button = InlineKeyboardButton("👨‍💻 Developer's GitHub", url="https://github.com/tanjiro")
+repo_button = InlineKeyboardButton("👉 Repository", url="https://github.com/anupammaurya6767/Rakshak")
+developer_button = InlineKeyboardButton("👨‍💻 Developer's GitHub", url="https://github.com/anupammaurya6767/Rakshak/graphs/contributors")
 support_button = InlineKeyboardButton("💰 Support", url="https://www.paypal.com")
 
 # Create an inline keyboard
