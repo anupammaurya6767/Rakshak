@@ -125,13 +125,6 @@ To stop the Rakshak Docker container, use the following command:
 docker stop rakshak-container
 ```
 
-## License
-
-By using the Rakshak Docker image, you agree to abide by the project's [MIT License](LICENSE).
-```
-
-Feel free to adjust the Docker image name and other specifics to match your project's configuration and requirements. This section provides a clear guide for users to build and run the Rakshak project within a Docker container.
-
 ## Contributing
 
 We welcome contributions from the community! Whether it's fixing bugs, adding new features, or improving documentation, your contributions are valuable. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
