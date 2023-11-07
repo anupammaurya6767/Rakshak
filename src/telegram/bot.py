@@ -3,6 +3,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import json
 import os
 import sys
+from MongoDBManager import MongoDBManager
 
 # Create the start message
 start_message = """
@@ -60,6 +61,10 @@ def send_notification(chat_id, message, image_path=None):
         msg = app.send_photo(chat_id, photo=image_path, caption=message)
         if msg.photo:
             image_link = msg.photo[-1].file_id
+            # Save to MongoDB
+            mongo_manager = MongoDBManager()
+            mongo_manager.store_link_in_mongodb(message, image_link)
+            mongo_manager.close_connection()
     else:
         app.send_message(chat_id, message)
 
