@@ -15,8 +15,8 @@ class MongoDBManager:
         self.db = self.client[db_name]
         self.collection = self.db[collection_name]
 
-    def store_link_in_mongodb(self,timestamp, image_link):
-        data = {"timestamp": timestamp, "image_path": image_path}
+    def store_link_in_mongodb(self,message, image_link):
+        data = {"message": message, "image_path": image_path}
         self.collection.insert_one(data)
 
     def close_connection(self):
