@@ -30,5 +30,3 @@ def establish_internet_connection(config_path):
     except Exception as e:
         print(f"Failed to establish an internet connection: {str(e)}")
 
-if __name__ == "__main__":
-    establish_internet_connection("config/config.json")
