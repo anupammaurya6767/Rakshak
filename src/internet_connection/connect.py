@@ -1,6 +1,6 @@
-
 import subprocess
 import json
+import logger
 
 def establish_internet_connection(config_path):
     try:
@@ -17,11 +17,11 @@ def establish_internet_connection(config_path):
 
         # Check if the connection was successful
         if result.returncode == 0:
-            print("Internet connection established successfully.")
-            print(result.stdout)  
+             logger.logger.info("Internet connection established successfully.")
+             logger.logger.info(result.stdout)  
         else:
-            print("Failed to establish the internet connection.")
-            print(result.stderr)  
+             logger.logger.info("Failed to establish the internet connection.")
+             logger.logger.info(result.stderr)  
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
