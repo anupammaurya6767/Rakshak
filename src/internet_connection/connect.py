@@ -1,32 +1,27 @@
+
 import subprocess
 import json
 
 def establish_internet_connection(config_path):
-    with open(config_path, "r") as config_file:
-        config = json.load(config_file)
-
-    apn = config["sim_module"]["apn"]
-    username = config["sim_module"]["username"]
-    password = config["sim_module"]["password"]
-
     try:
-        # Check if the modem is already connected
-        status = subprocess.check_output("nmcli c show --active", shell=True).decode()
-        if "modem" in status:
-            print("Modem is already connected.")
-            return
+        # Read configuration from config.json
+        with open(config_path, "r") as config_file:
+            config = json.load(config_file)
+        
+        # Get APN and USB interface from the configuration
+        apn = config.get("sim_apn", "YOUR_DEFAULT_APN")
+        usb_interface = config.get("sim_usb_interface", "YOUR_DEFAULT_USB_INTERFACE")
 
-        # Create a new connection profile
-        connection_name = "cellular"
-        subprocess.call(f"nmcli c add con-name {connection_name} ifname '*' type gsm", shell=True)
+        # Run the sakis3g command to establish the internet connection
+        result = subprocess.run(["sudo", "sakis3g", "connect", f"APN={apn}", f"USBINTERFACE={usb_interface}"], capture_output=True, text=True, check=True)
 
-        # Configure connection settings
-        subprocess.call(f"nmcli c modify {connection_name} apn {apn} user {username} password {password}", shell=True)
+        # Check if the connection was successful
+        if result.returncode == 0:
+            print("Internet connection established successfully.")
+            print(result.stdout)  
+        else:
+            print("Failed to establish the internet connection.")
+            print(result.stderr)  
 
-        # Connect to the modem
-        subprocess.call(f"nmcli c up {connection_name}", shell=True)
-
-        print("Internet connection established successfully.")
     except Exception as e:
-        print(f"Failed to establish an internet connection: {str(e)}")
-
+        print(f"An error occurred: {str(e)}")
