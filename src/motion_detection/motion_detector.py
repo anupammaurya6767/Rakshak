@@ -2,7 +2,9 @@ import cv2
 import os
 import time
 import json
+import logging
 from src.telegram.bot import send_notification
+from src.logger import logger  # Import the logger module
 
 # Read the configuration file
 with open("config.json", "r") as config_file:
@@ -21,11 +23,6 @@ class OpenCVMotionDetector:
     def init_logging(self):
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)
-
-    def log_message(self, message):
-        with open(self.log_filename, "a") as log_file:
-            timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-            log_file.write(f"[{timestamp}] {message}\n")
 
     def detect_motion(self):
         while True:
@@ -61,7 +58,7 @@ class OpenCVMotionDetector:
                 os.remove(image_path)
 
                 # Log the motion event
-                self.log_message("Motion detected and recorded.")
+                logger.info("Motion detected and recorded.")
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
