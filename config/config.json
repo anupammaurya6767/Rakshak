@@ -5,11 +5,8 @@
     "bot_token": "YOUR_BOT_TOKEN",
     "chat_id": "YOUR_CHAT_ID"
   },
-  "sim_module": {
-       "apn": "YOUR_APN",
-       "username": "YOUR_USERNAME",
-       "password": "YOUR_PASSWORD"
-   },
+  "sim_apn": "YOUR_APN",
+  "sim_usb_interface": "YOUR_USB_INTERFACE",
   "mongodb": {
     "db_url": "mongodb://localhost:27017/",
     "db_name": "motion_db",
