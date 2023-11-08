@@ -52,6 +52,7 @@ class OpenCVMotionDetector:
                 cv2.imwrite(image_path, frame)
 
                 # Send a notification with the image
+                # only for unrecognized persons (if condition to be added)
                 send_notification(chat_id, "Motion detected!", image_path=image_path)
 
                 # Delete the image from the server
