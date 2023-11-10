@@ -6,6 +6,7 @@
 │   └── 📁 logs/ (Directory to store logs)<br/>
 ├── 📁 src/<br/>
 │   ├── 📄 init.py<br/>
+|   ├── 📄 logger.py<br/>
 │   ├── 📄 flask_app.py  (New Flask app for Raspberry Pi)<br/>
 │   └── 📁 telegram/<br/>
 │       ├── 📄 init.py<br/>
@@ -16,7 +17,6 @@
 ├── 📁 motion_detection/<br/>
 │   ├── 📄 init.py<br/>
 │   └── 📄 motion_detector.py<br/>
-├── 📄 logger.py<br/>
 ├── 📄 main.py<br/>
 ├── 📄 requirements.txt  (Flask dependencies)<br/>
 ├── 📄 setup.bash  (Setup script for installing dependencies)<br/>
