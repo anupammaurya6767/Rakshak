@@ -1,12 +1,24 @@
+# Use an official Debian stretch image
 FROM debian:stretch
- 
-# Setting working directory
+
+# Set the working directory
 WORKDIR /app
 
-COPY . /app
+# Copy only the necessary files for setup
+COPY requirements.txt /app/
 
-# Installing necessary dependencies
-RUN apt-get update && apt-get install -y python3 python3-pip sakis3g
-RUN pip3 install -r requirements.txt
+# Install necessary dependencies
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip sakis3g && \
+    pip3 install --upgrade pip && \
+    pip3 install -r requirements.txt
 
-CMD ["python3", "main.py"]
+# Copy the entire project
+COPY . /app/
+
+
+# Expose any needed ports
+EXPOSE 80
+
+# Define the command to run your application
+CMD ["sh", "start.sh"]
