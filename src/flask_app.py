@@ -7,6 +7,19 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = 'YOUR_URL'
 mongo = PyMongo(app)
 
+# Endpoint to get the current size of the Raspberry Pi device
+@app.route('/getsizestatus', methods=['GET'])
+def get_size_status():
+    total_size, used_size, free_size = shutil.disk_usage("/")
+    return jsonify({'total_size': total_size, 'used_size': used_size, 'free_size': free_size})
+
+# Endpoint to get the RAM status of the device
+@app.route('/getramstatus', methods=['GET'])
+def get_ram_status():
+    ram_info = psutil.virtual_memory()
+    return jsonify({'total_ram': ram_info.total, 'used_ram': ram_info.used, 'free_ram': ram_info.available})
+
+
 @app.route('/getData', methods=['GET'])
 def get_data():
     try:
