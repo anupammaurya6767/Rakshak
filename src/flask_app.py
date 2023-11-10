@@ -1,11 +1,25 @@
 from flask import Flask, jsonify
 from flask_pymongo import PyMongo
+import ping3
+import psutil
 
 app = Flask(__name__)
 
 # Set your MongoDB URL
 app.config['MONGO_URI'] = 'YOUR_URL'
 mongo = PyMongo(app)
+
+# Endpoint to get the latency of the Flask server
+@app.route('/getlatency', methods=['GET'])
+def get_latency():
+    ping = ping3.Ping()
+    latency = ping.ping('google.com')
+
+    if latency is not None:
+        return jsonify({'latency': latency})
+    else:
+        return jsonify({'error': 'Failed to determine latency'})
+
 
 # Endpoint to get the current size of the Raspberry Pi device
 @app.route('/getsizestatus', methods=['GET'])
